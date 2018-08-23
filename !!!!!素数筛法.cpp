@@ -3,7 +3,7 @@
 
 int a[10000020];
 int vis[10000020];
-void sslist(int *a,int n)////////////ÖÆËØÊı±í 
+void sslist(int *a,int n)////////////åˆ¶ç´ æ•°è¡¨ 
 {
 	int na=0;
 	for (int i=2;i<=n;i++)
@@ -18,14 +18,14 @@ void sslist(int *a,int n)////////////ÖÆËØÊı±í
 	}
 }
 
-void ss_fac(int *a,int n)////////////ÓÃÓÚÒòÊ½·Ö½â(a[i]´æi×î´óÒòÊı)
+void ss_fac(int *a,int n)////////////ç”¨äºå› å¼åˆ†è§£(a[i]å­˜iæœ€å¤§å› æ•°)
 {
 	for (int i=2;i<=n;i++)
 		if (!a[i])	for (int j=i;j<=n;j+=i)	a[j]=i;
 }
 
 bool p[10000020];
-void prime(int n)/////ÏßĞÔÉ¸ËØÊı 
+void prime(int n)
 {
 	memset(p,true,sizeof(p));
 	p[1]=false;
@@ -35,6 +35,25 @@ void prime(int n)/////ÏßĞÔÉ¸ËØÊı
 		for (int j=i+i;j<=n;j+=i)	p[j]=false;
 	}
 }
+
+
+
+void find_prime(int *a,int n)/////çº¿æ€§ç­›ç´ æ•°+åˆ¶è¡¨ 
+{
+	memset(p,true,sizeof(p));
+	int topa=1;
+	for(int i=2;i<=n;i++)
+	{
+		if(p[i])	a[topa++]=i;
+		for(int j=1;j<=topa;j++)
+		{
+			if(i*a[j]>n)	break;
+			p[i*a[j]]=false;
+            if(i%a[j]==0) break;
+        }
+    }
+}
+
 /*
 int main()
 {
